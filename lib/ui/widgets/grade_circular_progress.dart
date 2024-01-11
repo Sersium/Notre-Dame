@@ -87,15 +87,18 @@ class _GradeCircularProgressState extends State<GradeCircularProgress>
     );
   }
 
-  double getGradeInDecimals(double grade) =>
-      (grade / 100) > 1.0 ? 1.0 : (grade / 100);
+  double getGradeInDecimals(double grade) => grade == -1
+      ? 0
+      : (grade / 100) > 1.0
+          ? 1.0
+          : (grade / 100);
 
   String getGrade(BuildContext context) {
     if (widget.finalGrade != null) {
       return widget.finalGrade;
     }
 
-    if (widget.studentGrade != null) {
+    if (widget.studentGrade != null && widget.studentGrade >= 0.0) {
       return AppIntl.of(context)
           .grades_grade_in_percentage(widget.studentGrade.round());
     }
