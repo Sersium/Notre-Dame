@@ -24,13 +24,13 @@ class _NewsCardState extends State<NewsCard> {
   @override
   Widget build(BuildContext context) {
     timeago.setLocaleMessages('fr', timeago.FrShortMessages());
-    return  GestureDetector(
-      onTap: () => _navigationService
-          .pushNamed(RouterPaths.newsDetails, arguments: widget.news),
+    return GestureDetector(
+      onTap: () => _navigationService.pushNamed(RouterPaths.newsDetails,
+          arguments: widget.news),
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         key: UniqueKey(),
-        child:Column(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [

@@ -6,7 +6,7 @@ class NewsDetailsViewModel extends FutureViewModel<News> {
   News news;
 
   NewsDetailsViewModel({this.news});
-  
+
   @override
   Future<News> futureToRun() {
     print('hehe');

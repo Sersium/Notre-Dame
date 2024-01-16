@@ -24,7 +24,8 @@ class NewsDetailsView extends StatefulWidget {
 
 class _NewsDetailsViewState extends State<NewsDetailsView> {
   final AnalyticsService _analyticsService = locator<AnalyticsService>();
-  final content = "Le club scientifique qui conceptualise un robot de recherche et secourisme recrute pour ses nouveaux projets!";
+  final content =
+      "Le club scientifique qui conceptualise un robot de recherche et secourisme recrute pour ses nouveaux projets!";
 
   @override
   void initState() {
@@ -36,8 +37,7 @@ class _NewsDetailsViewState extends State<NewsDetailsView> {
   @override
   Widget build(BuildContext context) =>
       ViewModelBuilder<NewsDetailsViewModel>.reactive(
-        viewModelBuilder: () => NewsDetailsViewModel(
-            news: widget.news),
+        viewModelBuilder: () => NewsDetailsViewModel(news: widget.news),
         builder: (context, model, child) => BaseScaffold(
           showBottomBar: false,
           body: Material(
@@ -46,7 +46,7 @@ class _NewsDetailsViewState extends State<NewsDetailsView> {
               headerSliverBuilder: (context, innerBoxScrolled) => [
                 SliverAppBar(
                   backgroundColor: Theme.of(context).bottomAppBarColor,
-                      /*Theme.of(context).brightness == Brightness.light
+                  /*Theme.of(context).brightness == Brightness.light
                           ? AppTheme.etsLightRed
                           : Theme.of(context).bottomAppBarColor,*/
                   pinned: true,
@@ -58,7 +58,8 @@ class _NewsDetailsViewState extends State<NewsDetailsView> {
                     icon: const Icon(Icons.arrow_back),
                     onPressed: () => Navigator.of(context).pop(),
                   ),
-                  title: Text("Annonce",
+                  title: Text(
+                    "Annonce",
                     style: Theme.of(context).textTheme.bodyText1.copyWith(
                         color: Colors.white,
                         fontSize: 25,
@@ -81,11 +82,18 @@ class _NewsDetailsViewState extends State<NewsDetailsView> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      _buildTitle("Séance d’information"), // TODO: Change for widget.news.title
-                      _buildImage("https://picsum.photos/400/200"), // TODO: Change for widget.news.image
-                      _buildPublishedOn(DateTime.now(), DateTime.now().add(const Duration(days: 3))), // TODO: Change for widget.news.publishedDate
+                      _buildTitle(
+                          "Séance d’information"), // TODO: Change for widget.news.title
+                      _buildImage(
+                          "https://picsum.photos/400/200"), // TODO: Change for widget.news.image
+                      _buildPublishedOn(
+                          DateTime.now(),
+                          DateTime.now().add(const Duration(
+                              days:
+                                  3))), // TODO: Change for widget.news.publishedDate
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.end, // Center the row content
+                        mainAxisAlignment:
+                            MainAxisAlignment.end, // Center the row content
                         children: <Widget>[
                           Container(
                             width: 200,
@@ -96,7 +104,8 @@ class _NewsDetailsViewState extends State<NewsDetailsView> {
                           ),
                         ],
                       ),
-                      _buildContent(content), // TODO: Change for widget.news.description
+                      _buildContent(
+                          content), // TODO: Change for widget.news.description
                       const Spacer(), // This will push everything above it upwards
                       _buildTags(), // This will now appear at the bottom
                     ],
@@ -113,9 +122,7 @@ class _NewsDetailsViewState extends State<NewsDetailsView> {
       title,
       textAlign: TextAlign.center,
       style: Theme.of(context).textTheme.bodyText1.copyWith(
-        color: Colors.white,
-        fontSize: 25,
-        fontWeight: FontWeight.bold),
+          color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),
     );
   }
 
@@ -137,14 +144,22 @@ class _NewsDetailsViewState extends State<NewsDetailsView> {
   }
 
   Widget _buildPublishedOn(DateTime publishedDate, DateTime eventDate) {
-    final String formattedPublishedDate = DateFormat.yMMMMd(Localizations.localeOf(context).toString()).format(publishedDate);
-    final String formattedEventDate = DateFormat.yMMMMd(Localizations.localeOf(context).toString()).format(eventDate);
-    
+    final String formattedPublishedDate =
+        DateFormat.yMMMMd(Localizations.localeOf(context).toString())
+            .format(publishedDate);
+    final String formattedEventDate =
+        DateFormat.yMMMMd(Localizations.localeOf(context).toString())
+            .format(eventDate);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        Text("Publié le $formattedPublishedDate par Capra",),
-        Text("Date de l’événement: $formattedEventDate",),
+        Text(
+          "Publié le $formattedPublishedDate par Capra",
+        ),
+        Text(
+          "Date de l’événement: $formattedEventDate",
+        ),
       ],
     );
   }
@@ -187,5 +202,4 @@ class _NewsDetailsViewState extends State<NewsDetailsView> {
       ],
     );
   }
-
 }
