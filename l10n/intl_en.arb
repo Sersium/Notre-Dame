@@ -166,6 +166,8 @@
   "ets_papercut_title":"PaperCut",
 
   "news_title" : "Announcement",
+  "news_details_title" : "News",
+  "news_event_date": "Event date",
 
   "report_news": "Why are you reporting this news?",
   "report_as": "Report as",

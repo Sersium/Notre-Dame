@@ -3,10 +3,11 @@ import '../models/report_news.dart';
 
 // List<QuickLink> quickLinks(AppIntl intl) => [
 
-List<ReportNews> reportNewsItems= [
+List<ReportNews> reportNewsItems = [
   ReportNews(
     title: "Contenu inapproprié",
-    description: "Annonce contenant des discours haineux, des images choquantes, ou du contenu adulte.",
+    description:
+        "Annonce contenant des discours haineux, des images choquantes, ou du contenu adulte.",
   ),
   ReportNews(
     title: "Information fausse ou trompeuse",
@@ -14,7 +15,8 @@ List<ReportNews> reportNewsItems= [
   ),
   ReportNews(
     title: "Harcèlement ou abus",
-    description: "Annonce ciblant une personne ou un groupe de manière abusive.",
+    description:
+        "Annonce ciblant une personne ou un groupe de manière abusive.",
   ),
   ReportNews(
     title: "Contenu obsolète",

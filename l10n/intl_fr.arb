@@ -166,6 +166,8 @@
   "ets_papercut_title":"PaperCut",
 
   "news_title" : "Annonces",
+  "news_details_title" : "Annonce",
+  "news_event_date": "Date de l'événement",
 
   "report_news": "Pourquoi reportez-vous cette annonce ?",
   "report_as": "Signaler comme",

@@ -11,4 +11,8 @@ class NewsDetailsViewModel extends FutureViewModel<News> {
   Future<News> futureToRun() {
     return Future.value(news);
   }
+
+  void shareNews() {
+    print('todo');
+  }
 }

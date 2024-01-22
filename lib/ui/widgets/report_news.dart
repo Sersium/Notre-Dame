@@ -29,27 +29,27 @@ class _ReportNewsState extends State<ReportNews> {
 
   @override
   Widget build(BuildContext context) => ViewModelBuilder.reactive(
-    viewModelBuilder: () => ReportNewsViewModel(),
-    builder: (context, model, child) => SizedBox(
-      height: MediaQuery.of(context).size.height * 0.50,
-      child: Column(
-        children: [
-          if (widget.showHandle) _buildHandle(context),
-          if (!clicked) _buildTitle(context),
-          Expanded(
-            child: clicked && clickedIndex != -1
-                ? Center(child: _buildReportView(context, clickedIndex))
-                : ListView.builder(
-                    itemCount: reportNewsItems.length,
-                    itemBuilder: (context, index) {
-                      return _buildListTile(index);
-                    },
-                  ),
+        viewModelBuilder: () => ReportNewsViewModel(),
+        builder: (context, model, child) => SizedBox(
+          height: MediaQuery.of(context).size.height * 0.50,
+          child: Column(
+            children: [
+              if (widget.showHandle) _buildHandle(context),
+              if (!clicked) _buildTitle(context),
+              Expanded(
+                child: clicked && clickedIndex != -1
+                    ? Center(child: _buildReportView(context, clickedIndex, model as ReportNewsViewModel))
+                    : ListView.builder(
+                        itemCount: reportNewsItems.length,
+                        itemBuilder: (context, index) {
+                          return _buildListTile(index);
+                        },
+                      ),
+              ),
+            ],
           ),
-        ],
-      ),
-    ),
-  );
+        ),
+      );
 
   Widget _buildHandle(BuildContext context) {
     return Container(
@@ -71,7 +71,8 @@ class _ReportNewsState extends State<ReportNews> {
             height: 5,
             width: 50,
             decoration: const BoxDecoration(
-                color: Colors.grey, borderRadius: BorderRadius.all(Radius.circular(8.0))),
+              color: Colors.grey,
+              borderRadius: BorderRadius.all(Radius.circular(8.0))),
           ),
         ),
       ),
@@ -103,7 +104,8 @@ class _ReportNewsState extends State<ReportNews> {
   Widget _buildListTile(int index) {
     final item = reportNewsItems[index];
     return Padding(
-      padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 8.0, bottom: 8.0),
+      padding:
+          const EdgeInsets.only(left: 16.0, right: 16.0, top: 8.0, bottom: 8.0),
       child: ListTile(
         title: Text(
           item.title,
@@ -114,9 +116,9 @@ class _ReportNewsState extends State<ReportNews> {
         tileColor: Colors.grey[800],
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(5),
-          // Removed the 'side' property to eliminate the border
         ),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
         onTap: () {
           setState(() {
             clicked = true;
@@ -127,7 +129,7 @@ class _ReportNewsState extends State<ReportNews> {
     );
   }
 
-  Widget _buildReportView(BuildContext context, int index) {
+  Widget _buildReportView(BuildContext context, int index, ReportNewsViewModel model) {
     final String reportTitle = reportNewsItems[index].title;
 
     return Container(
@@ -155,22 +157,29 @@ class _ReportNewsState extends State<ReportNews> {
                 children: [
                   Text(
                     '${AppIntl.of(context).report_as}\n${reportTitle.toLowerCase()}?',
-                    style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 24),
+                    style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 24),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 24),
                   ElevatedButton(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(AppTheme.etsLightRed),
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                          AppTheme.etsLightRed),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                       ),
                     ),
-                    child: Text(AppIntl.of(context).report, style: const TextStyle(color: Colors.white)),
+                    child: Text(AppIntl.of(context).report,
+                        style: const TextStyle(color: Colors.white)),
                     onPressed: () {
-                      Fluttertoast.showToast(msg: AppIntl.of(context).report_toast);
+                      model.reportNews(reportTitle);
+                      Fluttertoast.showToast(
+                          msg: AppIntl.of(context).report_toast);
                       Navigator.pop(context);
                     },
                   ),
