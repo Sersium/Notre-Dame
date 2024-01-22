@@ -5,6 +5,7 @@ import 'package:notredame/core/models/news.dart';
 import 'package:notredame/core/viewmodels/news_details_viewmodel.dart';
 import 'package:notredame/ui/utils/app_theme.dart';
 import 'package:notredame/ui/widgets/base_scaffold.dart';
+import 'package:notredame/ui/widgets/report_news.dart';
 import 'package:stacked/stacked.dart';
 
 // SERVICES
@@ -69,10 +70,18 @@ class _NewsDetailsViewState extends State<NewsDetailsView> {
                     IconButton(
                       icon: const Icon(Icons.warning_amber_sharp),
                       color: AppTheme.etsLightRed,
-                      onPressed: () {
-                        // Your action on button press
-                      },
-                    ),
+                      onPressed: () async {
+                        await showModalBottomSheet(
+                          isDismissible: true,
+                          enableDrag: true,
+                          isScrollControlled: true,
+                          context: context,
+                          shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(10),
+                                  topRight: Radius.circular(10))),
+                          builder: (context) => const ReportNews());
+                      })
                   ],
                 ),
               ],

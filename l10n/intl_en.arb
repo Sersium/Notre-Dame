@@ -167,6 +167,11 @@
 
   "news_title" : "Announcement",
 
+  "report_news": "Why are you reporting this news?",
+  "report_as": "Report as",
+  "report": "Report",
+  "report_toast": "Thank you for your report !",
+
   "more_about_applets_title": "About ApplETS",
   "more_report_bug": "Report a bug or request a feature",
   "more_report_bug_steps_title": "How does it work?\n\n",

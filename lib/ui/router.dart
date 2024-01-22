@@ -96,6 +96,11 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
       return PageRouteBuilder(
           settings: RouteSettings(name: routeSettings.name),
           pageBuilder: (_, __, ___) => QuickLinksView());
+    case RouterPaths.newsDetails:
+      return PageRouteBuilder(
+          settings: RouteSettings(
+              name: routeSettings.name, arguments: routeSettings.arguments),
+          pageBuilder: (_, __, ___) => const NewsDetailsView());
     case RouterPaths.webView:
       return PageRouteBuilder(
           pageBuilder: (_, __, ___) =>

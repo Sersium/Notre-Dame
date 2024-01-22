@@ -9,7 +9,6 @@ class NewsDetailsViewModel extends FutureViewModel<News> {
 
   @override
   Future<News> futureToRun() {
-    print('hehe');
     return Future.value(news);
   }
 }
