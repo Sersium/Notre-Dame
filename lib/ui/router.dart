@@ -15,6 +15,7 @@ import 'package:notredame/ui/views/feedback_view.dart';
 // VIEWS
 import 'package:notredame/ui/views/login_view.dart';
 import 'package:notredame/ui/views/news_details_view.dart';
+import 'package:notredame/ui/views/news_view.dart';
 import 'package:notredame/ui/views/not_found_view.dart';
 import 'package:notredame/ui/views/more_view.dart';
 import 'package:notredame/ui/views/outage_view.dart';
@@ -91,15 +92,10 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
       return PageRouteBuilder(
           settings: RouteSettings(name: routeSettings.name),
           pageBuilder: (_, __, ___) => QuickLinksView());
-    case RouterPaths.news: // TODO
+    case RouterPaths.news:
       return PageRouteBuilder(
           settings: RouteSettings(name: routeSettings.name),
           pageBuilder: (_, __, ___) => QuickLinksView());
-    case RouterPaths.newsDetails:
-      return PageRouteBuilder(
-          settings: RouteSettings(
-              name: routeSettings.name, arguments: routeSettings.arguments),
-          pageBuilder: (_, __, ___) => const NewsDetailsView());
     case RouterPaths.webView:
       return PageRouteBuilder(
           pageBuilder: (_, __, ___) =>
