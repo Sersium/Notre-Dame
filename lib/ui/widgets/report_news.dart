@@ -38,7 +38,9 @@ class _ReportNewsState extends State<ReportNews> {
               if (!clicked) _buildTitle(context),
               Expanded(
                 child: clicked && clickedIndex != -1
-                    ? Center(child: _buildReportView(context, clickedIndex, model as ReportNewsViewModel))
+                    ? Center(
+                        child: _buildReportView(context, clickedIndex,
+                            model as ReportNewsViewModel))
                     : ListView.builder(
                         itemCount: reportNewsItems.length,
                         itemBuilder: (context, index) {
@@ -71,8 +73,8 @@ class _ReportNewsState extends State<ReportNews> {
             height: 5,
             width: 50,
             decoration: const BoxDecoration(
-              color: Colors.grey,
-              borderRadius: BorderRadius.all(Radius.circular(8.0))),
+                color: Colors.grey,
+                borderRadius: BorderRadius.all(Radius.circular(8.0))),
           ),
         ),
       ),
@@ -129,7 +131,8 @@ class _ReportNewsState extends State<ReportNews> {
     );
   }
 
-  Widget _buildReportView(BuildContext context, int index, ReportNewsViewModel model) {
+  Widget _buildReportView(
+      BuildContext context, int index, ReportNewsViewModel model) {
     final String reportTitle = reportNewsItems[index].title;
 
     return Container(

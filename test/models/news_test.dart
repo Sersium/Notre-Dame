@@ -15,12 +15,16 @@ void main() {
         'id': 1,
         'title': 'Test Title',
         'description': 'Test Description',
+        'author': 'Test Author',
+        'activity': 'Test Activity',
+        'avatar': 'https://example.com/avatar.jpg',
         'image': 'https://example.com/image.jpg',
         'tags': [
           {'text': 'Tag 1', 'color': Colors.blue.value},
           {'text': 'Tag 2', 'color': Colors.red.value},
         ],
-        'date': '2022-01-01T12:00:00Z',
+        'publishedDate': '2022-01-01T12:00:00Z',
+        'eventDate': '2022-01-01T12:00:00Z',
       };
 
       final news = News.fromJson(json);
@@ -28,13 +32,15 @@ void main() {
       expect(news.id, equals(1));
       expect(news.title, equals('Test Title'));
       expect(news.description, equals('Test Description'));
+      expect(news.author, equals('Test Author'));
+      expect(news.activity, equals('Test Activity'));
+      expect(news.avatar, equals('https://example.com/avatar.jpg'));
       expect(news.image, equals('https://example.com/image.jpg'));
       expect(news.tags.length, equals(2));
-      expect(news.tags[0].text, equals('Tag 1'));
-      expect(news.tags[0].color, equals(Colors.blue[500]));
-      expect(news.tags[1].text, equals('Tag 2'));
-      expect(news.tags[1].color, equals(Colors.red[500]));
-      expect(news.date, equals(DateTime.parse('2022-01-01T12:00:00Z')));
+      expect(news.tags[0], equals('Tag 1'));
+      expect(news.tags[1], equals('Tag 2'));
+      expect(news.publishedDate, equals(DateTime.parse('2022-01-01T12:00:00Z')));
+      expect(news.eventDate, equals(DateTime.parse('2022-01-01T12:00:00Z')));
     });
 
     test('toJson() should convert News to JSON correctly', () {
@@ -42,12 +48,16 @@ void main() {
         id: 1,
         title: 'Test Title',
         description: 'Test Description',
+        author: 'Test Author',
+        avatar: 'https://example.com/avatar.jpg',
+        activity: 'Test Activity',
         image: 'https://example.com/image.jpg',
         tags: [
-          Tag(text: 'Tag 1', color: Colors.blue[500]),
-          Tag(text: 'Tag 2', color: Colors.red[500]),
+          'Tag 1',
+          'Tag 2'
         ],
-        date: DateTime.parse('2022-01-01T12:00:00Z'),
+        publishedDate: DateTime.parse('2022-01-01T12:00:00Z'),
+        eventDate: DateTime.parse('2022-01-01T12:00:00Z'),
       );
 
       final json = news.toJson();
@@ -55,13 +65,17 @@ void main() {
       expect(json['id'], equals(1));
       expect(json['title'], equals('Test Title'));
       expect(json['description'], equals('Test Description'));
+      expect(json['author'], equals('Test Author'));
+      expect(json['avatar'], equals('https://example.com/avatar.jpg'));
+      expect(json['activity'], equals('Test Activity'));
       expect(json['image'], equals('https://example.com/image.jpg'));
       expect(json['tags'], hasLength(2));
       expect(json['tags'][0]['text'], equals('Tag 1'));
       expect(json['tags'][0]['color'], equals(Colors.blue[500].value));
       expect(json['tags'][1]['text'], equals('Tag 2'));
       expect(json['tags'][1]['color'], equals(Colors.red[500].value));
-      expect(json['date'], equals('2022-01-01 12:00:00.000Z'));
+      expect(json['publishedDate'], equals('2022-01-01 12:00:00.000Z'));
+      expect(json['eventDate'], equals('2022-01-01 12:00:00.000Z'));
     });
   });
 

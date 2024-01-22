@@ -29,35 +29,50 @@ void main() {
     News(
       id: 1,
       title:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempus arcu sed quam tincidunt, non venenatis orci mollis.",
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       description: "Test 1 description",
-      date: DateTime.now(),
+      author: "Capra",
+      avatar: 'https://picsum.photos/200/200',
+      activity: "Club scientifique",
+      publishedDate: DateTime.now(),
+      eventDate: DateTime.now(),
       image: null,
-      tags: <Tag>[
-        Tag(text: "tag1", color: Colors.blue),
-        Tag(text: "tag2", color: Colors.green),
+      tags: [
+        "Robotique",
+        "Programmation",
+        "Intelligence artificielle"
       ],
     ),
     News(
       id: 2,
       title: "Test 2",
       description: "Test 2 description",
-      date: DateTime.now(),
+      author: "App|ETS",
+      avatar: 'https://picsum.photos/200/200',
+      activity: "Club scientifique",
+      publishedDate: DateTime.now(),
+      eventDate: DateTime.now(),
       image: null,
-      tags: <Tag>[
-        Tag(text: "tag1", color: Colors.blue),
-        Tag(text: "tag2", color: Colors.green),
+      tags: [
+        "Robotique",
+        "Programmation",
+        "Intelligence artificielle"
       ],
     ),
     News(
       id: 3,
       title: "Test 3",
       description: "Test 3 description",
-      date: DateTime.now(),
+      author: "Jean-Guy Tremblay",
+      avatar: 'https://picsum.photos/200/200',
+      activity: "Service à la vie étudiante",
+      publishedDate: DateTime.now(),
+      eventDate: DateTime.now(),
       image: null,
-      tags: <Tag>[
-        Tag(text: "tag1", color: Colors.blue),
-        Tag(text: "tag2", color: Colors.green),
+      tags: [
+        "Robotique",
+        "Programmation",
+        "Intelligence artificielle"
       ],
     ),
   ];

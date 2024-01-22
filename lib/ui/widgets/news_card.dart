@@ -26,7 +26,7 @@ class _NewsCardState extends State<NewsCard> {
     timeago.setLocaleMessages('fr', timeago.FrShortMessages());
     return GestureDetector(
       onTap: () => _navigationService.pushNamed(RouterPaths.newsDetails,
-          arguments: widget.news),
+        arguments: widget.news),
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         key: UniqueKey(),
@@ -83,7 +83,7 @@ class _NewsCardState extends State<NewsCard> {
         ),
         const SizedBox(width: 10),
         Text(
-          timeago.format(news.date, locale: AppIntl.of(context).localeName),
+          timeago.format(news.publishedDate, locale: AppIntl.of(context).localeName),
           style: textStyle,
         ),
       ],

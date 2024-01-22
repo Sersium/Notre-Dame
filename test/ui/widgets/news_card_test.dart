@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:notredame/core/models/news.dart';
-import 'package:notredame/core/models/tags.dart';
 import 'package:notredame/ui/widgets/news_card.dart';
 
 // Project imports:
@@ -13,11 +12,15 @@ void main() {
     id: 3,
     title: "Test 3",
     description: "Test 3 description",
-    date: DateTime.now(),
+    author: "Test auteur",
+    avatar: 'https://picsum.photos/200/200',
+    activity: "Test activité",
+    publishedDate: DateTime.now(),
+    eventDate: DateTime.now(),
     image: null,
-    tags: <Tag>[
-      Tag(text: "tag1", color: Colors.blue),
-      Tag(text: "tag2", color: Colors.green),
+    tags: [
+      "tag1",
+      "tag2"
     ],
   );
 

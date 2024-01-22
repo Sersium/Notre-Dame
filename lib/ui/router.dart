@@ -1,5 +1,6 @@
 // FLUTTER / DART / THIRD-PARTIES
 import 'package:flutter/material.dart';
+import 'package:notredame/core/models/news.dart';
 
 // MODELS
 import 'package:notredame/core/models/quick_link.dart';
@@ -100,7 +101,7 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
       return PageRouteBuilder(
           settings: RouteSettings(
               name: routeSettings.name, arguments: routeSettings.arguments),
-          pageBuilder: (_, __, ___) => const NewsDetailsView());
+          pageBuilder: (_, __, ___) => NewsDetailsView(news: routeSettings.arguments as News));
     case RouterPaths.webView:
       return PageRouteBuilder(
           pageBuilder: (_, __, ___) =>

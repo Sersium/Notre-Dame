@@ -26,8 +26,6 @@ class NewsDetailsView extends StatefulWidget {
 
 class _NewsDetailsViewState extends State<NewsDetailsView> {
   final AnalyticsService _analyticsService = locator<AnalyticsService>();
-  final content =
-      "Le club scientifique qui conceptualise un robot de recherche et secourisme recrute pour ses nouveaux projets!";
 
   @override
   void initState() {
@@ -47,9 +45,10 @@ class _NewsDetailsViewState extends State<NewsDetailsView> {
               physics: const ClampingScrollPhysics(),
               headerSliverBuilder: (context, innerBoxScrolled) => [
                 SliverAppBar(
-                  backgroundColor: Theme.of(context).brightness == Brightness.light
-                          ? AppTheme.etsLightRed
-                          : Theme.of(context).bottomAppBarColor,
+                  backgroundColor:
+                    Theme.of(context).brightness == Brightness.light
+                      ? AppTheme.etsLightRed
+                      : Theme.of(context).bottomAppBarColor,
                   pinned: true,
                   onStretchTrigger: () {
                     return Future<void>.value();
@@ -62,17 +61,11 @@ class _NewsDetailsViewState extends State<NewsDetailsView> {
                   title: Text(
                     AppIntl.of(context).news_details_title,
                     style: Theme.of(context).textTheme.bodyText1.copyWith(
-                        color: Colors.white,
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold),
+                      color: Colors.white,
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold),
                   ),
                   actions: <Widget>[
-                    IconButton(
-                      icon: const Icon(Icons.share),
-                      onPressed: () async {
-                        model.shareNews(); // TODO
-                        }
-                      ),
                     IconButton(
                       icon: const Icon(Icons.warning_amber_sharp),
                       color: AppTheme.etsLightRed,
@@ -87,8 +80,8 @@ class _NewsDetailsViewState extends State<NewsDetailsView> {
                               topLeft: Radius.circular(10),
                               topRight: Radius.circular(10))),
                           builder: (context) => const ReportNews());
-                        }
-                      )
+                      }
+                    )
                   ],
                 ),
               ],
@@ -96,16 +89,13 @@ class _NewsDetailsViewState extends State<NewsDetailsView> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    _buildTitle("Merci à McGill Robotics pour l’invitation au RoboHacks 2023!"), // TODO: Change for widget.news.title
-                    _buildDate(
-                        context,
-                        DateTime.now(),
-                        DateTime.now().add(const Duration(days: 3))), // TODO: Change for widget.news.publishedDate
-                    _buildImage("https://picsum.photos/400/200"), // TODO: Change for widget.news.image
-                    _buildAuthor("Capra", "Club scientifique"), // TODO: Change for widget.news.author
-                    _buildContent(content), // TODO: Change for widget.news.description
+                    _buildTitle(widget.news.title),
+                    _buildDate(context, widget.news.publishedDate, widget.news.eventDate),
+                    _buildImage(widget.news.image),
+                    _buildAuthor(widget.news.avatar, widget.news.author, widget.news.activity),
+                    _buildContent(widget.news.description),
                     const Spacer(),
-                    _buildTags(),
+                    _buildTags(model),
                   ],
                 ),
               ),
@@ -136,13 +126,17 @@ class _NewsDetailsViewState extends State<NewsDetailsView> {
     );
   }
 
-  Widget _buildAuthor(String author, String activity) {
+  Widget _buildAuthor(String avatar, String author, String activity) {
     return Container(
       color: const Color(0xff1e1e1e),
       child: ListTile(
-        leading: CircleAvatar(
-          backgroundColor: Colors.red,
-          child: Image.asset('assets/capra_logo.png'),
+        leading: ClipOval(
+          child: Image.network(
+            avatar,
+            fit: BoxFit.cover,
+            width: 50.0,
+            height: 50.0,
+          ),
         ),
         title: Text(
           author,
@@ -164,7 +158,8 @@ class _NewsDetailsViewState extends State<NewsDetailsView> {
     );
   }
 
-  Widget _buildDate(BuildContext context, DateTime publishedDate, DateTime eventDate) {
+  Widget _buildDate(
+      BuildContext context, DateTime publishedDate, DateTime eventDate) {
     final String formattedPublishedDate =
         DateFormat('d MMMM yyyy', Localizations.localeOf(context).toString())
             .format(publishedDate);
@@ -198,7 +193,8 @@ class _NewsDetailsViewState extends State<NewsDetailsView> {
                       color: AppTheme.etsDarkGrey,
                       shape: BoxShape.circle,
                     ),
-                    child: const Icon(Icons.event, size: 20.0, color: Colors.white),
+                    child: const Icon(Icons.event,
+                        size: 20.0, color: Colors.white),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -235,7 +231,7 @@ class _NewsDetailsViewState extends State<NewsDetailsView> {
     );
   }
 
-  Widget _buildTags() {
+  Widget _buildTags(NewsDetailsViewModel model) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
@@ -245,16 +241,16 @@ class _NewsDetailsViewState extends State<NewsDetailsView> {
             spacing: 8,
             runSpacing: 8,
             children: List.generate(
-              5, // TODO : Change
+              widget.news.tags.length,
               (index) => Container(
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: Colors.green,
+                  color: model.getTagColor(widget.news.tags[index]),
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: const Text(
-                  "Robotique",
-                  style: TextStyle(
+                child: Text(
+                  widget.news.tags[index],
+                  style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                   ),
